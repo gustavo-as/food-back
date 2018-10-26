@@ -1,6 +1,6 @@
 package br.com.xfood.foodback.model.enumerator;
 
-public enum EnumProfile {
+public enum EnumUserRule {
 
     ROLE_ADMIN,
     ROLE_CUSTOMER,
