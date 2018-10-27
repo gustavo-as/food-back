@@ -1,9 +1,14 @@
 package br.com.xfood.foodback.model;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Data
@@ -13,41 +18,37 @@ public class People implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(generator="people_seq", strategy= GenerationType.SEQUENCE)
-    @SequenceGenerator(name="people_seq", sequenceName="people_seq", allocationSize=1, initialValue=1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String nome;
+    private String name;
 
-    private String nomeFantasia;
+    private String companyName;
 
     @Column(unique=true)
     private String cpfCnpj;
 
-    private String docIdentificacao;
+    private String whatsappNumber;
 
-    private String celular;
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date registrationDate = new Date();
+
+    private String genre;
 
     @Temporal(TemporalType.DATE)
-    private Date dataCadastro = new Date();
-
-    @Enumerated(EnumType.STRING)
-    private String sexo;
-
-    @Temporal(TemporalType.DATE)
-    private Date dataNascimento;
+    private Date birthDate;
 
     private String email;
 
-    private String logradouro;
+    private String street;
 
-    private String bairro;
+    private String number;
 
-    private String complemento;
+    private String observation;
 
-    private String numero;
-
-    private String cep;
+    private String zipCode;
 
     @ManyToOne
     private County county;

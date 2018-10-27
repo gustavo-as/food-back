@@ -19,8 +19,6 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="user_seq")
-    @SequenceGenerator(name="user_seq", sequenceName="user_seq", allocationSize=1, initialValue=1)
     private Integer id;
 
     @Column(nullable=false, unique = true)
@@ -29,25 +27,25 @@ public class User implements Serializable {
     @Email(message="Login should be email")
     private String login;
 
-    private String senha;
+    private String password;
 
     @ManyToOne(optional=false)
     private People people;
 
     @Temporal(TemporalType.DATE)
-    private Date dataAlteracaoSenha = new Date();
+    private Date passwordUpdated = new Date();
 
     @Temporal(TemporalType.DATE)
-    private Date dataCriacao = new Date();
+    private Date createdDate = new Date();
 
     @Temporal(TemporalType.DATE)
-    private Date dataUltimoAcesso = new Date();
+    private Date lastAccess = new Date();
 
     @OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
     @JoinColumn(name="user_id")
     private Set<UserRule> rules = new HashSet<UserRule>();
 
-    private boolean ativo;
+    private boolean active;
 
     public void addRule(EnumUserRule enumUserRule){
         if(!isContainsRule(enumUserRule)){

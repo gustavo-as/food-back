@@ -1,4 +1,6 @@
 package br.com.xfood.foodback.model.enumerator;
 
-public enum EnumUf {
+public enum EnumState {
+    GOIAS,
+    SAO_PAULO;
 }
